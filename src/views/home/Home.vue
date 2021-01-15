@@ -1,5 +1,7 @@
 <template>
   <div id="home">
+    <!--滚动组件-->
+    <scroll></scroll>
     <!--顶部bar-->
     <nav-bar class="home-nav">
       <template #navCenter>
@@ -21,27 +23,30 @@
     </van-row>
     <!--feature-->
     <!--tabcontrol-->
-    <tab-control :tabList="tabList"></tab-control>
-    <ul>
-      <li v-for="item in 100">{{item}}</li>
-    </ul>
+    <tab-control :tabList="tabList" @tabItem="tabItemClick"></tab-control>
+    <!--产品列表-->
+    <goods-list :goodsList="showGoods"></goods-list>
   </div>
 </template>
 
 <script>
   import NavBar from "../../components/common/navBar/NavBar";
+  import Scroll from "../../components/common/scroll/Scroll";
+
   import TabControl from "../../components/content/tabControl/TabControl";
+  import GoodsList from "../../components/content/goods/GoodsList";
 
   import {getHomeMultidata, getHomeGoods} from "../../request/api";
 
   export default {
     name: "Home",
-    components: {TabControl, NavBar},
+    components: {Scroll, GoodsList, TabControl, NavBar},
     data() {
       return {
         tabList: ['流行', '新款', '秋冬'],
         banners: [],
         recommends: [],
+        currentType: 'pop',
         goods: {
           'pop': {page: 0, list: []},
           'new': {page: 0, list: []},
@@ -54,14 +59,34 @@
       this.getHomeMultidata();
       /*请求商品数据*/
       this.getHomeGoods('pop');
+      this.getHomeGoods('new');
+      this.getHomeGoods('sell');
+    },
+    computed: {
+      showGoods() {
+        return this.goods[this.currentType].list
+      }
     },
     methods: {
-      recommendClick(val){
+      recommendClick(val) {
         location.href = val
+      },
+      tabItemClick(index) {
+        console.log(index)
+        switch (index) {
+          case 0:
+            this.currentType = 'pop'
+            break
+          case 1:
+            this.currentType = 'new'
+            break
+          case 2:
+            this.currentType = 'sell'
+            break
+        }
       },
       getHomeMultidata() {
         getHomeMultidata().then(res => {
-          console.log(res.data);
           this.banners = res.data.banner.list
           this.recommends = res.data.recommend.list
         })
@@ -73,7 +98,7 @@
           this.goods[type].page += 1
         })
       },
-      feature(e){
+      feature(e) {
         console.log(e)
       }
     }
@@ -92,27 +117,32 @@
   }
 
   /*轮播图*/
-  .my-swipe{
+  .my-swipe {
     padding-top: 44px;
-    img{
+
+    img {
       width: 100%;
     }
   }
+
   /*recommend*/
-  .recommend{
+  .recommend {
     font-size: 14px;
     padding: 10px 0 20px;
     border-bottom: 10px solid #eeeeee;
-    &-item{
+
+    &-item {
       text-align: center;
     }
+
     img {
       width: 60px;
       margin-bottom: 10px;
     }
   }
+
   /*feature*/
-  .feature{
+  .feature {
     width: 100%;
   }
 </style>
