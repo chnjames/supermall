@@ -1,31 +1,32 @@
 <template>
-  <div id="home">
-    <!--滚动组件-->
-    <scroll></scroll>
+  <div id="home" class="wrapper">
     <!--顶部bar-->
     <nav-bar class="home-nav">
       <template #navCenter>
         <div>购物街</div>
       </template>
     </nav-bar>
-    <!--轮播图-->
-    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-      <van-swipe-item v-for="(item, index) in banners" :key="index">
-        <img :src="item.image" alt="">
-      </van-swipe-item>
-    </van-swipe>
-    <!--recommend-->
-    <van-row type="flex" justify="space-between" class="recommend">
-      <van-col span="6" v-for="(item, index) in recommends" class="recommend-item" @click="recommendClick(item.link)">
-        <img :src="item.image" alt="">
-        <div>{{item.title}}</div>
-      </van-col>
-    </van-row>
-    <!--feature-->
-    <!--tabcontrol-->
-    <tab-control :tabList="tabList" @tabItem="tabItemClick"></tab-control>
-    <!--产品列表-->
-    <goods-list :goodsList="showGoods"></goods-list>
+    <!--滚动组件-->
+    <scroll class="content">
+      <!--轮播图-->
+      <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
+        <van-swipe-item v-for="(item, index) in banners" :key="index">
+          <img :src="item.image" alt="">
+        </van-swipe-item>
+      </van-swipe>
+      <!--recommend-->
+      <van-row type="flex" justify="space-between" class="recommend">
+        <van-col span="6" v-for="(item, index) in recommends" :key="index" class="recommend-item" @click="recommendClick(item.link)">
+          <img :src="item.image" alt="">
+          <div>{{item.title}}</div>
+        </van-col>
+      </van-row>
+      <!--feature-->
+      <!--tabcontrol-->
+      <tab-control :tabList="tabList" @tabItem="tabItemClick"></tab-control>
+      <!--产品列表-->
+      <goods-list :goodsList="showGoods"></goods-list>
+    </scroll>
   </div>
 </template>
 
@@ -106,6 +107,10 @@
 </script>
 
 <style lang="scss" scoped>
+  #home {
+    position: relative;
+    height: 100vh;
+  }
   .home-nav {
     background-color: #ff8e97;
     color: #FFFFFF;
@@ -115,16 +120,21 @@
     right: 0;
     z-index: 100;
   }
-
+  .content{
+    position: absolute;
+    top: 44px;
+    bottom: 49px;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+  }
   /*轮播图*/
   .my-swipe {
-    padding-top: 44px;
-
+    /*padding-top: 44px;*/
     img {
       width: 100%;
     }
   }
-
   /*recommend*/
   .recommend {
     font-size: 14px;
