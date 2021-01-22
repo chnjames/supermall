@@ -1,11 +1,11 @@
 <template>
   <div id="home">
     <!--顶部bar-->
-    <nav-bar class="home-nav">
+    <!--<nav-bar class="home-nav">
       <template #navCenter>
         <div>购物街</div>
       </template>
-    </nav-bar>
+    </nav-bar>-->
     <!--滚动组件-->
     <scroll class="content"
             ref="scroll"
@@ -29,8 +29,8 @@
         </van-col>
       </van-row>
       <img src="https://img13.360buyimg.com/imgzone/jfs/t1/161676/39/3403/68176/60069bb2E72fdb806/0ce6cb8847b79c39.jpg" alt="">
-      <!--tabcontrol-->
-      <tab-control :tabList="tabList" @tabItem="tabItemClick"></tab-control>
+      <!--tabControl-->
+      <tab-control :class="{fixed: isTabFixed}" :tabList="tabList" @tabItem="tabItemClick" ref="tabControl"></tab-control>
       <!--产品列表-->
       <goods-list :goodsList="showGoods"></goods-list>
     </scroll>
@@ -68,7 +68,9 @@
         },
         backTop: false,
         pullUp: true,
-        listenScroll: true
+        listenScroll: true,
+        tabOffsetTop: 0,
+        isTabFixed: false
       }
     },
     created() {
@@ -78,6 +80,11 @@
       this.getHomeGoods('pop');
       this.getHomeGoods('new');
       this.getHomeGoods('sell');
+    },
+    mounted() {
+      /*获取tabControl的offsetTop, 所有的组件都有一个属性$el*/
+      console.log(this.$refs.tabControl.$el.offsetTop);
+      this.tabOffsetTop = this.$refs.tabControl.$el.offsetTop
     },
     computed: {
       showGoods() {
@@ -107,6 +114,7 @@
         console.log(value)
         value = Math.abs(value.y)
         this.backTop = value > 350
+        this.isTabFixed = value > this.tabOffsetTop
       },
       /*点击返回页面顶部*/
       backTopClick() {
@@ -162,7 +170,8 @@
   }
   .content{
     position: absolute;
-    top: 44px;
+    /*top: 44px;*/
+    top: 0;
     bottom: 49px;
     left: 0;
     right: 0;
@@ -205,5 +214,13 @@
       width: 100%;
       height: 100%;
     }
+  }
+  /*tabControl吸顶*/
+  .fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
   }
 </style>
