@@ -28,8 +28,11 @@
 
 <style lang="scss" scoped>
 .goods-list{
-  display: flex;
+  /*display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-around;*/
+  column-count: 2;
+  column-gap: 10px;
+  padding: 0 5px;
 }
 </style>

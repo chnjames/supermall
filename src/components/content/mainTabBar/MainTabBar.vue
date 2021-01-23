@@ -23,28 +23,28 @@
       return {
         tabBar: [
           {
-            tabIcon: 'https://img.icons8.com/material-outlined/24/000000/home--v2.png',
-            iconActive: 'https://img.icons8.com/color/48/000000/home.png',
+            tabIcon: '~@/assets/images/tabbar/home.png',
+            iconActive: '~@/assets/images/tabbar/home-active.png',
             tabName: '首页',
-            tabColor: 'blue',
+            tabColor: '#e89abe', // 设置TabBar文字颜色
             tabPath: '/home'
           },{
-            tabIcon: 'https://img.icons8.com/material-outlined/24/000000/home--v2.png',
-            iconActive: 'https://img.icons8.com/color/48/000000/home.png',
+            tabIcon: '~@/assets/images/tabbar/class.png',
+            iconActive: '~@/assets/images/tabbar/class-active.png',
             tabName: '分类',
-            tabColor: 'blue',
+            tabColor: '#e89abe',
             tabPath: '/category'
           },{
-            tabIcon: 'https://img.icons8.com/material-outlined/24/000000/home--v2.png',
-            iconActive: 'https://img.icons8.com/color/48/000000/home.png',
+            tabIcon: '@/assets/images/tabbar/shop.png',
+            iconActive: '@/assets/images/tabbar/shop-active.png',
             tabName: '购物车',
-            tabColor: 'blue',
+            tabColor: '#e89abe',
             tabPath: '/cart'
           },{
-            tabIcon: 'https://img.icons8.com/material-outlined/24/000000/home--v2.png',
-            iconActive: 'https://img.icons8.com/color/48/000000/home.png',
+            tabIcon: '@/assets/images/tabbar/profile.png',
+            iconActive: '@/assets/images/tabbar/profile-active.png',
             tabName: '我的',
-            tabColor: 'blue',
+            tabColor: '#e89abe',
             tabPath: '/profile'
           }
         ]

@@ -19,7 +19,7 @@
       tabPath: String,
       tabColor: {
         type: String,
-        default: 'red'
+        default: '#e89abe'
       }
     },
     data() {

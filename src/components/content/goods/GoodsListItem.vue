@@ -2,8 +2,10 @@
   <div class="goods-item">
     <img :src="goodItem.show.img">
     <div class="goods-item-title">{{goodItem.title}}</div>
-    <div class="goods-item-favorites">{{goodItem.cfav}}</div>
-    <div class="goods-item-price">{{goodItem.price}}</div>
+    <div class="goods-flex">
+      <div class="goods-item-favorites"><van-icon name="star-o" color="#e89abe" />{{goodItem.cfav}}</div>
+      <div class="goods-item-price">{{goodItem.price}}</div>
+    </div>
   </div>
 </template>
 
@@ -26,7 +28,11 @@
 
 <style lang="scss" scoped>
   .goods-item {
-    width: 46%;
+    break-inside: avoid;
+    width: 100%;
+    box-shadow: 1px 1px 3px #eeeeee;
+    margin-bottom: 10px;
+    border-radius: 5px;
     &-title {
       width: 100%;
       overflow: hidden;
@@ -36,5 +42,10 @@
     img {
       width: 100%;
     }
+  }
+  .goods-flex{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 </style>
