@@ -50,11 +50,11 @@
     }
 
     .active {
-      color: #ff8e97;
+      color: #e89abe;
 
       span {
         padding: 4px;
-        border-bottom: 2px solid #ff8e97;
+        border-bottom: 2px solid #e89abe;
       }
     }
   }

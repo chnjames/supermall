@@ -23,26 +23,26 @@
       return {
         tabBar: [
           {
-            tabIcon: '~@/assets/images/tabbar/home.png',
-            iconActive: '~@/assets/images/tabbar/home-active.png',
+            tabIcon: 'https://raw.githubusercontent.com/chnjames/supermall/master/src/assets/images/tabbar/home.png',
+            iconActive: 'https://raw.githubusercontent.com/chnjames/supermall/master/src/assets/images/tabbar/home-active.png',
             tabName: '首页',
             tabColor: '#e89abe', // 设置TabBar文字颜色
             tabPath: '/home'
           },{
-            tabIcon: '~@/assets/images/tabbar/class.png',
-            iconActive: '~@/assets/images/tabbar/class-active.png',
+            tabIcon: 'https://raw.githubusercontent.com/chnjames/supermall/master/src/assets/images/tabbar/class.png',
+            iconActive: 'https://raw.githubusercontent.com/chnjames/supermall/master/src/assets/images/tabbar/class-active.png',
             tabName: '分类',
             tabColor: '#e89abe',
             tabPath: '/category'
           },{
-            tabIcon: '@/assets/images/tabbar/shop.png',
-            iconActive: '@/assets/images/tabbar/shop-active.png',
+            tabIcon: 'https://raw.githubusercontent.com/chnjames/supermall/master/src/assets/images/tabbar/shop.png',
+            iconActive: 'https://raw.githubusercontent.com/chnjames/supermall/master/src/assets/images/tabbar/shop-active.png',
             tabName: '购物车',
             tabColor: '#e89abe',
             tabPath: '/cart'
           },{
-            tabIcon: '@/assets/images/tabbar/profile.png',
-            iconActive: '@/assets/images/tabbar/profile-active.png',
+            tabIcon: 'https://raw.githubusercontent.com/chnjames/supermall/master/src/assets/images/tabbar/profile.png',
+            iconActive: 'https://raw.githubusercontent.com/chnjames/supermall/master/src/assets/images/tabbar/profile-active.png',
             tabName: '我的',
             tabColor: '#e89abe',
             tabPath: '/profile'

@@ -49,13 +49,14 @@
     text-align: center;
     height: 49px;
     font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
     img {
-      width: 24px;
-      height: 24px;
-    }
-    .active{
-      color: red;
+      width: 20px;
+      height: 20px;
     }
   }
 </style>

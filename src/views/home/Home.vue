@@ -7,6 +7,8 @@
       </template>
     </nav-bar>-->
     <!--滚动组件-->
+    <!--tabControl-->
+    <tab-control class="fixed" v-show="isTabFixed" :tabList="tabList" @tabItem="tabItemClick"></tab-control>
     <scroll class="content"
             ref="scroll"
             @scroll="positionTop"
@@ -28,11 +30,11 @@
           <div>{{item.title}}</div>
         </van-col>
       </van-row>
-      <img src="https://img13.360buyimg.com/imgzone/jfs/t1/161676/39/3403/68176/60069bb2E72fdb806/0ce6cb8847b79c39.jpg" alt="">
-      <!--tabControl-->
-      <tab-control :class="{fixed: isTabFixed}" :tabList="tabList" @tabItem="tabItemClick" ref="tabControl"></tab-control>
+      <div class="future">
+        <img src="https://img13.360buyimg.com/imgzone/jfs/t1/169841/20/1873/391319/5ff964e7Ec481faaa/49174dc4a3e975d4.jpg" alt="">
+      </div>
       <!--产品列表-->
-      <goods-list :goodsList="showGoods"></goods-list>
+      <goods-list ref="goodsList" :goodsList="showGoods"></goods-list>
     </scroll>
     <!--返回顶部-->
     <transition name="fade">
@@ -83,8 +85,8 @@
     },
     mounted() {
       /*获取tabControl的offsetTop, 所有的组件都有一个属性$el*/
-      console.log(this.$refs.tabControl.$el.offsetTop);
-      this.tabOffsetTop = this.$refs.tabControl.$el.offsetTop
+      // console.log(this.$refs.goodsList.$el.offsetTop);
+      this.tabOffsetTop = this.$refs.goodsList.$el.offsetTop
     },
     computed: {
       showGoods() {
@@ -96,7 +98,7 @@
         location.href = val
       },
       tabItemClick(index) {
-        console.log(index)
+        // console.log(index)
         switch (index) {
           case 0:
             this.currentType = 'pop'
@@ -111,7 +113,7 @@
       },
       // 子组件传滚动距离
       positionTop(value) {
-        console.log(value)
+        // console.log(value)
         value = Math.abs(value.y)
         this.backTop = value > 350
         this.isTabFixed = value > this.tabOffsetTop
@@ -160,7 +162,7 @@
     height: 100vh;
   }
   .home-nav {
-    background-color: #ff8e97;
+    background-color: #e89abe;
     color: #FFFFFF;
     position: fixed;
     top: 0;
@@ -222,5 +224,17 @@
     left: 0;
     right: 0;
     z-index: 10;
+  }
+  .future{
+    height: 150px;
+    overflow: hidden;
+    border-radius: 5px;
+    margin: 5px;
+    box-sizing: border-box;
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
   }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="goods-list">
-    <goods-list-item v-for="(item, index) in goodsList" :key="index" :goodItem="item" />
+    <goods-list-item v-for="(item, index) in goodsList" @click.native="goodsDetail(item)" :key="index" :goodItem="item" />
   </div>
 </template>
 
@@ -20,7 +20,9 @@
       // console.log(this.goodsList);
     },
     methods: {
-
+      goodsDetail(item) {
+        this.$router.push('/goodsDetail/'+item.iid)
+      }
     },
     components: {GoodsListItem}
   }
@@ -31,6 +33,7 @@
   /*display: flex;
   flex-wrap: wrap;
   justify-content: space-around;*/
+  /*瀑布流方法1*/
   column-count: 2;
   column-gap: 10px;
   padding: 0 5px;
