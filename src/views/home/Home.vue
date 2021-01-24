@@ -52,7 +52,7 @@
   import TabControl from "../../components/content/tabControl/TabControl";
   import GoodsList from "../../components/content/goods/GoodsList";
 
-  import {getHomeMultidata, getHomeGoods} from "../../request/api";
+  import {getHomeMultidata, getHomeGoods} from "@/request/api";
 
   export default {
     name: "Home",
