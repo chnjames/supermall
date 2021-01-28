@@ -16,7 +16,7 @@
         </div>
       </template>
     </nav-bar>
-    <van-swipe class="my-swipe" :autoplay="3000" height="200">
+    <van-swipe class="my-swipe" :autoplay="3000" height="300">
       <van-swipe-item v-for="(item, index) in goodsSwipe" :key="index">
         <van-image :src="item" fit="cover" radius="5"></van-image>
       </van-swipe-item>
@@ -32,6 +32,42 @@
       <div v-for="item in goodItem.services">
         <van-icon :name="item.icon"></van-icon>
         <div>{{item.name}}</div>
+      </div>
+    </div>
+    <!--产品详情-->
+    <div>
+      <div>{{goodsDetail.desc}}</div>
+      <div v-for="item in goodsDetail.detailImage" :key="item.anchor">
+        <div>{{item.key}}</div>
+        <div v-for="val in item.list">
+          <img style="width: 100%" :src="val" alt="">
+        </div>
+        <div v-html="goodsInfo.esi"></div>
+      </div>
+    </div>
+    <!--产品参数-->
+    <div>
+      <div>{{goodsParameter.info.key}}</div>
+      <div v-for="item in goodsParameter.info.set" :key="item">
+        <div>{{item.key}}</div>
+        <div>{{item.value}}</div>
+      </div>
+      <div>{{goodsParameter.rule.key}}</div>
+      <div>{{goodsParameter.rule.disclaimer}}</div>
+      <div v-for="item in goodsParameter.rule.tables[0]" :key="item">
+        <div v-for="val in item" :key="val">{{val}}</div>
+      </div>
+    </div>
+    <!--产品评价-->
+    <div>
+      <div>评价：{{goodsEvaluation.cRate}}</div>
+      <div v-for="item in goodsEvaluation.list" :key="item.rateId">
+        <div>
+          <img :src="item.user.avatar" alt="">
+          <div>{{item.user.uname}}</div>
+          <div>{{new Date(item.created)}}</div>
+          <div>{{item.content}}</div>
+        </div>
       </div>
     </div>
   </div>
@@ -64,6 +100,9 @@
         currentIndex: 1,
         goodsInfo: null,// 产品详情所有数据
         goodsSwipe: null, // 产品轮播数据
+        goodsDetail: '', // 产品详情
+        goodsParameter: '', // 产品参数
+        goodsEvaluation: '', // 产品评价
         goodItem: {}
       }
     },
@@ -84,8 +123,10 @@
         getGoodsDetail(id).then(res => {
           this.goodsInfo = res.result
           this.goodItem = new Goods(this.goodsInfo.itemInfo, this.goodsInfo.columns, this.goodsInfo.shopInfo.services);
-          console.log(this.goodItem)
           this.goodsSwipe = this.goodsInfo.itemInfo.topImages
+          this.goodsDetail = this.goodsInfo.detailInfo
+          this.goodsParameter = this.goodsInfo.itemParams
+          this.goodsEvaluation = this.goodsInfo.rate
         })
       }
     }
@@ -94,8 +135,14 @@
 
 <style lang="scss" scoped>
   .detail-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1500;
     color: #333333;
     font-size: 14px;
+    background-color: #ffffff;
     &-left {
       height: 100%;
       display: flex;
