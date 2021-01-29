@@ -3,7 +3,7 @@
     <nav-bar class="detail-nav">
       <template #navLeft>
         <div class="detail-nav-left" @click="backClick">
-          <van-icon size="20" name="arrow-left" />
+          <van-icon size="20" name="arrow-left"/>
         </div>
       </template>
       <template #navCenter>
@@ -22,14 +22,16 @@
       </van-swipe-item>
     </van-swipe>
     <div>
-      <div>{{goodItem.title}}</div>
-      <div>
-        <div>{{goodItem.newPrice}}</div>
-        <div>{{goodItem.oldPrice}}</div>
-        <div>{{goodItem.discount}}</div>
+      <div class="f-b-c">
+        <div>
+          <span class="new-price">{{goodItem.newPrice}}</span>
+          <span class="old-price">{{goodItem.oldPrice}}</span>
+        </div>
+        <div class="discount">{{goodItem.discount}}</div>
       </div>
-      <div v-for="item in goodItem.columns">{{item}}</div>
-      <div v-for="item in goodItem.services">
+      <div class="goods-title">{{goodItem.title}}</div>
+      <div v-for="item in goodItem.columns" :key="item">{{item}}</div>
+      <div v-for="item in goodItem.services" :key="item">
         <van-icon :name="item.icon"></van-icon>
         <div>{{item.name}}</div>
       </div>
@@ -40,9 +42,8 @@
       <div v-for="item in goodsDetail.detailImage" :key="item.anchor">
         <div>{{item.key}}</div>
         <div v-for="val in item.list">
-          <img style="width: 100%" :src="val" alt="">
+          <img :src="val" alt="">
         </div>
-        <div v-html="goodsInfo.esi"></div>
       </div>
     </div>
     <!--产品参数-->
@@ -134,6 +135,10 @@
 </script>
 
 <style lang="scss" scoped>
+  img {
+    width: 100%;
+    display: block;
+  }
   .detail-nav {
     position: fixed;
     top: 0;
@@ -143,12 +148,14 @@
     color: #333333;
     font-size: 14px;
     background-color: #ffffff;
+
     &-left {
       height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
     }
+
     &-center {
       display: flex;
       justify-content: space-around;
@@ -158,5 +165,36 @@
 
   .active {
     color: #e89abe;
+  }
+
+  /*产品详情*/
+  .f-b-c {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .new-price{
+      color: #f2270c;
+      font: {
+        size: 24px;
+        weight: 400;
+      }
+    }
+    .old-price {
+      color: #8c8c8c;
+      text-decoration: line-through;
+    }
+    .discount{
+      background-color: #f9180b;
+      font-size: 12px;
+      text-align: center;
+      height: 24px;
+      width: 60px;
+      color: #FFFFFF;
+      line-height: 24px;
+      border-radius: 12px;
+    }
+  }
+  .goods-title{
+    color: #333333;
   }
 </style>
