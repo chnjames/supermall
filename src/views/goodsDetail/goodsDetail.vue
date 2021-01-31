@@ -73,11 +73,11 @@
     </div>
     <!--产品底部导航-->
     <van-goods-action>
-      <van-goods-action-icon icon="chat-o" text="客服" dot />
-      <van-goods-action-icon icon="cart-o" text="购物车" badge="5" />
-      <van-goods-action-icon icon="shop-o" text="店铺" badge="12" />
-      <van-goods-action-button type="warning" @click="cartClick" text="加入购物车" />
-      <van-goods-action-button type="danger" text="立即购买" />
+      <van-goods-action-icon icon="chat-o" text="客服" dot/>
+      <van-goods-action-icon icon="cart-o" text="购物车" badge="5"/>
+      <van-goods-action-icon icon="shop-o" text="店铺" badge="12"/>
+      <van-goods-action-button type="warning" @click="cartClick" text="加入购物车"/>
+      <van-goods-action-button type="danger" text="立即购买"/>
     </van-goods-action>
   </div>
 </template>
@@ -86,6 +86,9 @@
 
   import {getGoodsDetail, Goods} from "@/request/api";
   import NavBar from "@/components/common/navBar/NavBar";
+  import {
+    ADD_CART
+  } from "@/store/mutation-types";
 
   export default {
     name: "goodsDetail",
@@ -143,7 +146,10 @@
         this.$toast('加入购物车成功');
         const goods = {}
         goods.id = this.goodsInfo.itemInfo.iid
-        this.$store.commit('addCart', goods)
+        goods.title = this.goodsInfo.itemInfo.title
+        goods.price = this.goodsInfo.itemInfo.lowNowPrice
+        goods.image = this.goodsInfo.itemInfo.topImages[0]
+        this.$store.dispatch(ADD_CART, goods)
       }
     }
   }
@@ -154,6 +160,7 @@
     width: 100%;
     display: block;
   }
+
   .detail-nav {
     position: fixed;
     top: 0;
@@ -187,18 +194,21 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    .new-price{
+
+    .new-price {
       color: #f2270c;
       font: {
         size: 24px;
         weight: 400;
       }
     }
+
     .old-price {
       color: #8c8c8c;
       text-decoration: line-through;
     }
-    .discount{
+
+    .discount {
       background-color: #f9180b;
       font-size: 12px;
       text-align: center;
@@ -209,7 +219,8 @@
       border-radius: 12px;
     }
   }
-  .goods-title{
+
+  .goods-title {
     color: #333333;
   }
 </style>
